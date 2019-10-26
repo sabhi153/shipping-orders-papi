@@ -1,0 +1,17 @@
+{
+	"minMuleVersion": "4.1.6",
+	"classLoaderModelLoaderDescriptor": {
+		"id": "mule",
+		"attributes": {
+			"exportedResources": [
+				"schemas/ShippingOrder-Schema.json",
+				"schemas/ShippingOrders-Schema.json",
+				"dwl/ShippingOrdersCsv_To_ShippingOrder.dwl"
+			],
+			"exportedPackages": [
+				"com.lynnco.csv.utils",
+				"org.apache.commons.csv"
+			]
+		}
+	}
+}

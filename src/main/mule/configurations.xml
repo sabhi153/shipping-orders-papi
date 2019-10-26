@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:sftp="http://www.mulesoft.org/schema/mule/sftp" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/sftp http://www.mulesoft.org/schema/mule/sftp/current/mule-sftp.xsd">
+	<global-property doc:name="Global Property"
+		doc:id="e5b3c256-39e5-4dfe-b165-dc6153f8f88e" name="env" value="dev" />
+	<configuration-properties doc:name="Configuration properties"
+		doc:id="905238c5-88aa-4473-96b6-fa18078fa6fc" file="${env}-system.yaml" />
+	<sftp:config name="SFTPConnectorConfig" doc:name="SFTP Config"
+		doc:id="c4c0186b-9769-4431-b605-10a59e5c7093">
+		<sftp:connection host="${consumer.sftp.host}"
+			workingDir="${consumer.sftp.workingDir}" port="${consumer.sftp.port}"
+			username="${consumer.sftp.userName}" password="${consumer.sftp.password}">
+			<sftp:preferred-authentication-methods />
+		</sftp:connection>
+	</sftp:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="ed8ea16e-f406-4e58-a643-db5e16606895" file="common-properties.yaml" />
+	<configuration doc:name="Configuration" doc:id="457e8ba8-86a9-46b8-ac27-dfa42a67ffa6" defaultErrorHandler-ref="error-handlerError_Handler" />
+</mule>

@@ -1,0 +1,341 @@
+﻿{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "array",
+	"items": {
+		"type": "object",
+		"properties": {
+			"shipmentNumber": {
+				"type": "integer"
+			},
+			"action": {
+				"type": "string"
+			},
+			"transportationMode": {
+				"type": "string"
+			},
+			"pickupDateBegin": {
+				"type": "string"
+			},
+			"pickupDateEnd": {
+				"type": "string"
+			},
+			"deliveryDateBegin": {
+				"type": "string"
+			},
+			"deliveryDateEnd": {
+				"type": "string"
+			},
+			"originName": {
+				"type": "string"
+			},
+			"originAddress1": {
+				"type": "string"
+			},
+			"originAddress2": {
+				"type": "string"
+			},
+			"originCity": {
+				"type": "string"
+			},
+			"originState": {
+				"type": "string"
+			},
+			"originZip": {
+				"type": "string"
+			},
+			"originCountry": {
+				"type": "string"
+			},
+			"originPhone": {
+				"type": "string"
+			},
+			"originFax": {
+				"type": "string"
+			},
+			"originEmail": {
+				"type": "string"
+			},
+			"originContactName": {
+				"type": "string"
+			},
+			"originEarliestAppointmentTime": {
+				"type": "string"
+			},
+			"originLatestAppointmentTime": {
+				"type": "string"
+			},
+			"destinationName": {
+				"type": "string"
+			},
+			"destinationAddress1": {
+				"type": "string"
+			},
+			"destinationAddress2": {
+				"type": "string"
+			},
+			"destinationCity": {
+				"type": "string"
+			},
+			"destinationState": {
+				"type": "string"
+			},
+			"destinationZip": {
+				"type": "string"
+			},
+			"destinationCountry": {
+				"type": "string"
+			},
+			"destinationPhone": {
+				"type": "string"
+			},
+			"destinationFax": {
+				"type": "string"
+			},
+			"destinationEmail": {
+				"type": "string"
+			},
+			"destinationContactName": {
+				"type": "string"
+			},
+			"destinationEarliestAppointmentTime": {
+				"type": "string"
+			},
+			"destinationLatestAppointmentTime": {
+				"type": "string"
+			},
+			"buyerName": {
+				"type": "string"
+			},
+			"customerId": {
+				"type": "integer"
+			},
+			"customerRemit": {
+				"type": "integer"
+			},
+			"shipmentProcessingIdentifier": {
+				"type": "string"
+			},
+			"specialInstructions": {
+				"type": "string"
+			},
+			"partNumber": {
+				"type": "string"
+			},
+			"partDescription": {
+				"type": "string"
+			},
+			"freightClass": {
+				"type": "integer"
+			},
+			"monetaryValue": {
+				"type": "string"
+			},
+			"shippingQuantity": {
+				"type": "string"
+			},
+			"shippingWeightTotal": {
+				"type": "integer"
+			},
+			"shippingPackaging": {
+				"type": "string"
+			},
+			"shippingItemLength": {
+				"type": "string"
+			},
+			"shippingItemWidth": {
+				"type": "string"
+			},
+			"shippingItemHeight": {
+				"type": "string"
+			},
+			"shippingItemTotalCube": {
+				"type": "string"
+			},
+			"services": {
+				"type": "string"
+			},
+			"referenceType#1": {
+				"type": "string"
+			},
+			"referenceValue#1": {
+				"type": "integer"
+			},
+			"referenceType#2": {
+				"type": "string"
+			},
+			"referenceValue#2": {
+				"type": "string"
+			},
+			"referenceType#3": {
+				"type": "string"
+			},
+			"referenceValue#3": {
+				"type": "number"
+			},
+			"referenceType#4": {
+				"type": "string"
+			},
+			"referenceValue#4": {
+				"type": "integer"
+			},
+			"referenceType#5": {
+				"type": "string"
+			},
+			"referenceValue#5": {
+				"type": "integer"
+			},
+			"referenceType#6": {
+				"type": "string"
+			},
+			"referenceValue#6": {
+				"type": "string"
+			},
+			"referenceType#7": {
+				"type": "string"
+			},
+			"referenceValue#7": {
+				"type": "string"
+			},
+			"referenceType#8": {
+				"type": "string"
+			},
+			"referenceValue#8": {
+				"type": "string"
+			},
+			"referenceType#9": {
+				"type": "string"
+			},
+			"referenceValue#9": {
+				"type": "string"
+			},
+			"referenceType#10": {
+				"type": "string"
+			},
+			"referenceValue#10": {
+				"type": "string"
+			},
+			"referenceType#11": {
+				"type": "string"
+			},
+			"referenceValue#11": {
+				"type": "string"
+			},
+			"referenceType#12": {
+				"type": "string"
+			},
+			"referenceValue#12": {
+				"type": "string"
+			},
+			"referenceType#13": {
+				"type": "string"
+			},
+			"referenceValue#13": {
+				"type": "string"
+			},
+			"referenceType#14": {
+				"type": "string"
+			},
+			"referenceValue#14": {
+				"type": "string"
+			},
+			"referenceType#15": {
+				"type": "string"
+			},
+			"referenceValue#15": {
+				"type": "string"
+			},
+			"referenceType#16": {
+				"type": "string"
+			},
+			"referenceValue#16": {
+				"type": "string"
+			}
+		},
+		"additionalProperties": true,
+		"required": [
+			"shipmentNumber",
+			"action",
+			"transportationMode",
+			"pickupDateBegin",
+			"pickupDateEnd",
+			"deliveryDateBegin",
+			"deliveryDateEnd",
+			"originName",
+			"originAddress1",
+			"originAddress2",
+			"originCity",
+			"originState",
+			"originZip",
+			"originCountry",
+			"originPhone",
+			"originFax",
+			"originEmail",
+			"originContactName",
+			"originEarliestAppointmentTime",
+			"originLatestAppointmentTime",
+			"destinationName",
+			"destinationAddress1",
+			"destinationAddress2",
+			"destinationCity",
+			"destinationState",
+			"destinationZip",
+			"destinationCountry",
+			"destinationPhone",
+			"destinationFax",
+			"destinationEmail",
+			"destinationContactName",
+			"destinationEarliestAppointmentTime",
+			"destinationLatestAppointmentTime",
+			"buyerName",
+			"customerId",
+			"customerRemit",
+			"shipmentProcessingIdentifier",
+			"specialInstructions",
+			"partNumber",
+			"partDescription",
+			"freightClass",
+			"monetaryValue",
+			"shippingQuantity",
+			"shippingWeightTotal",
+			"shippingPackaging",
+			"shippingItemLength",
+			"shippingItemWidth",
+			"shippingItemHeight",
+			"shippingItemTotalCube",
+			"services",
+			"referenceType#1",
+			"referenceValue#1",
+			"referenceType#2",
+			"referenceValue#2",
+			"referenceType#3",
+			"referenceValue#3",
+			"referenceType#4",
+			"referenceValue#4",
+			"referenceType#5",
+			"referenceValue#5",
+			"referenceType#6",
+			"referenceValue#6",
+			"referenceType#7",
+			"referenceValue#7",
+			"referenceType#8",
+			"referenceValue#8",
+			"referenceType#9",
+			"referenceValue#9",
+			"referenceType#10",
+			"referenceValue#10",
+			"referenceType#11",
+			"referenceValue#11",
+			"referenceType#12",
+			"referenceValue#12",
+			"referenceType#13",
+			"referenceValue#13",
+			"referenceType#14",
+			"referenceValue#14",
+			"referenceType#15",
+			"referenceValue#15",
+			"referenceType#16",
+			"referenceValue#16"
+		]
+	},
+	"additionalItems": true
+}

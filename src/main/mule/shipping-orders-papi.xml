@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:java="http://www.mulesoft.org/schema/mule/java"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:sftp="http://www.mulesoft.org/schema/mule/sftp"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/sftp http://www.mulesoft.org/schema/mule/sftp/current/mule-sftp.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/java http://www.mulesoft.org/schema/mule/java/current/mule-java.xsd">
+	<flow name="processCustomerFilesFlow" doc:id="1f5a693f-93d7-4dd5-a0b9-7bcfdba49787">
+		<sftp:listener doc:name="On New or Updated File"
+			doc:id="ca84c40e-3178-4a54-8568-be25e379893d" config-ref="SFTPConnectorConfig"
+			directory="${consumer.sftp.processDir}" timeBetweenSizeCheckUnit="MILLISECONDS"
+			timeBetweenSizeCheck="${consumer.sftp.verifyFileSizeAfter}"
+			moveToDirectory="${consumer.sftp.archiveDir}" renameTo='#[attributes.fileName ++ ".success"]'
+			applyPostActionWhenFailed="false" outputMimeType="application/csv">
+			<reconnect frequency="${consumer.sftp.reconnection.delayBetweenRetries}"
+				count="${consumer.sftp.reconnection.noOfAttempts}" />
+			<scheduling-strategy>
+				<fixed-frequency frequency="${consumer.sftp.scheduler.pollingFrequency}"
+					startDelay="${consumer.sftp.scheduler.delayBy}" />
+			</scheduling-strategy>
+		</sftp:listener>
+		<logger level="INFO" doc:name="Log Entry"
+			doc:id="5abec1b9-0ef5-4448-bac1-5136eb089d1f"
+			message="Shipping Order file received , File name is #[attributes.fileName] #[attributes]"
+			category="${logger.category.process-api}" />
+		<set-variable value="#[correlationId]" doc:name="Set Variable"
+			doc:id="3ad3e58e-9331-4c64-94a1-eb440e1b595e" variableName="transactionId" />
+		<logger level="INFO" doc:name="Logger"
+			doc:id="c95dc76e-67ee-424e-872e-5324c627ee70"
+			message="File : #[attributes.fileName] has been assigned transaction Id : #[vars.transactionId]" />
+		<try doc:name="Try" doc:id="b9f2ea70-b2af-4f48-ad17-20e2d098d794" >
+			<flow-ref doc:name="handleCSVShippingOrders_SubFlow" doc:id="26bfeb31-abec-4ba2-a44d-5c77cb954b3c" name="handleCSVShippingOrders_SubFlow" />
+			<error-handler >
+				<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="12e773e6-d92d-40fc-9e3e-36d55b98c21e" type="ANY">
+					<logger level="ERROR" doc:name="Log Exit" doc:id="032b4cae-a179-40c2-9d91-430b242eca68" category="${logger.category.process-api}" message='#[" An Error occurred in flow : "]'/>
+				</on-error-continue>
+			</error-handler>
+		</try>
+		<flow-ref doc:name="shipping-orders-validationFlow" doc:id="79b35a23-ac16-4c18-b3e7-aa515de60532" name="shipping-orders-validationFlow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="383f36c3-5bb7-411c-86f1-16706a3ccdde" message='#["Shipping Orders Initial Validation completed Successfully"]'/>
+	</flow>
+</mule>

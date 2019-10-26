@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:java="http://www.mulesoft.org/schema/mule/java" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/java http://www.mulesoft.org/schema/mule/java/current/mule-java.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="handleCSVShippingOrders_SubFlow" doc:id="89fde5f7-2beb-47bd-a532-773ed7804fd0" >
+		<logger level="INFO" doc:name="Log Entry" doc:id="fe0a4717-e73d-4c47-91fe-f98bc61aa34c" category="${logger.category.process-api}" message='#["Entry - " ++ " Prepare ShippingOrders CSV for Translation"]'/>
+		<java:invoke-static doc:name="Set CSV Format" doc:id="67356a8c-5afb-4f5e-b0b3-36deea336834" class="com.lynnco.csv.utils.CSVUtils" method="getCSVFormat(java.lang.String)" target="csvFormat">
+			<java:args><![CDATA[#["arg0": p('shippingOrder.csv.headers')]]]></java:args>
+		</java:invoke-static>
+		<java:new doc:name="Create New CSVUtil Instance for Reader" doc:id="612f3ba4-e101-4160-83ab-800a59e2a589" class="com.lynnco.csv.utils.CSVUtils" target="csvUtilInstance" constructor="CSVUtils(org.apache.commons.csv.CSVFormat)">
+			<java:args><![CDATA[#["arg0": vars.csvFormat]]]></java:args>
+			
+		</java:new>
+		<java:invoke doc:name="Prepare Parser" doc:id="9f13ab69-489b-4f5a-80b5-24d4cc112c95" instance="#[vars.csvUtilInstance]" class="com.lynnco.csv.utils.CSVUtils" method="reader(java.io.InputStream)" target="csvReaderParserMap">
+			<java:args><![CDATA[#["arg0":payload]]]></java:args>
+		</java:invoke>
+		<ee:transform doc:name="ShippingOrdersCsv_To_ShippingOrdersJson" doc:id="197f1e35-b351-41b0-b0bc-ec729a22a5a4" >
+			<ee:message >
+				<ee:set-payload resource="dwl/ShippingOrdersCsv_To_ShippingOrder.dwl" />
+			
+</ee:message>
+		</ee:transform>
+
+		<java:invoke doc:name="Close All Resources" doc:id="cca3930b-b02e-456c-bbe2-9bdb9755a9d7" instance="#[vars.csvUtilInstance]" class="com.lynnco.csv.utils.CSVUtils" method="closeAllResources(java.util.HashMap)" target="resourcesClosed">
+			<java:args ><![CDATA[#["arg0": vars.csvReaderParserMap]]]></java:args>
+		</java:invoke>
+		<logger level="INFO" doc:name="Log Exit"
+	doc:id="9611ef0d-d468-44da-8f00-199b54a20192" category="${logger.category.process-api}"
+	message='#["Exit - " ++ " ShippingOrders CSV Translated to JSON" ++ " and resources closed"]' />
+	</sub-flow>
+</mule>

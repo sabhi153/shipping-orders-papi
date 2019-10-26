@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
+	<flow name="shipping-orders-validationFlow" doc:id="b495183b-0b80-4409-a6ea-87d2546f5ef1" >
+		<json:validate-schema doc:name="Validate Shipping Order" doc:id="dcf44750-b519-43f7-9503-7d1e1029bfde" schema='schemas/ShippingOrders-Schema.json'/>
+	</flow>
+</mule>

@@ -1,0 +1,19 @@
+consumer:
+  sftp:
+    workingDir: "/"
+    processDir: "/process"
+    archiveDir: "/archive"
+    errorDir: "/error"
+    host: "localhost"
+    port: "22"
+    userName: "abhilash"
+    password: "abhilash"
+    verifyFileSizeAfter: "10000"
+    scheduler:
+      pollingFrequency: "5000"
+      delayBy: "0"
+    reconnection:
+      noOfAttempts: "5"
+      delayBetweenRetries: "10000"
+
+   
